@@ -8,7 +8,9 @@ const createEl = (el, innerText = "") => {
 };
 
 const populate = (arrayOfPlayers) => {
-  if (arrayOfPlayers.lenght < 1) return;
+  if (arrayOfPlayers.length < 1 || arrayOfPlayers === undefined) {
+    return;
+  }
   createHeaders(Object.keys(arrayOfPlayers[0]));
   createPlayerRow(arrayOfPlayers);
 };

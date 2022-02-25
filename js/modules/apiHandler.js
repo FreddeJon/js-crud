@@ -1,4 +1,4 @@
-class Repository {
+class ApiHandler {
   constructor(URL) {
     this.URL = URL;
   }
@@ -54,4 +54,4 @@ class Repository {
   }
 }
 
-export { Repository };
+export { ApiHandler };

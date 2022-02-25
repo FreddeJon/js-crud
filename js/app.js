@@ -1,10 +1,11 @@
-import { Repository } from "./repo/hockeyPlayerRepo.js";
+import { ApiHandler } from "./modules/apiHandler.js";
 import { populate } from "./modules/populateTable.js";
 
-const URL = "https://hockeyplayers.systementor.se/fredde/player";
+// const URL = "https://hockeyplayers.systementor.se/fredde/player";
+const URL = "http://localhost:3000/players";
 
-const repo = new Repository(URL);
+const hockeyApi = new ApiHandler(URL);
 
 window.onload = async () => {
-  populate(await repo.get());
+  populate(await hockeyApi.get());
 };
