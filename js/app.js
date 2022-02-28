@@ -1,5 +1,5 @@
 import { ApiHandler } from "./modules/apiHandler.js";
-import { populate } from "./modules/populateTable.js";
+import { populate, orderTable } from "./modules/populateTable.js";
 import { sortData } from "./modules/sortFunction.js";
 
 const URL = "https://hockeyplayers.systementor.se/fredde/player";
@@ -17,6 +17,5 @@ window.onload = async () => {
 const button = document.querySelector("#sort");
 
 button.addEventListener("click", () => {
-  data = sortData(data);
-  populate(data);
+  orderTable(1);
 });
