@@ -45,6 +45,7 @@ const createPlayerRow = (arrayOfPlayers) => {
 const createEditLink = (id) => {
   const editTd = createEl("td");
   const edit = createEl("a", "Edit");
+  edit.href = `/${id}`;
   editTd.append(edit);
   edit.addEventListener("click", () => {
     window.location.replace(`?id=${id}`);

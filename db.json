@@ -3,6 +3,8 @@
     {
       "name": "Fredrik",
       "age": 28,
+      "jersey": 13,
+      "born": "Stockholm",
       "id": 1
     }
   ]
