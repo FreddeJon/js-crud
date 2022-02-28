@@ -19,7 +19,8 @@ html {
   justify-content: center;
 
   margin: 50px auto;
-  width: min-content;
+  min-width: 400px;
+  max-width: 800px;
   /* border: 1px solid black; */
   padding: 30px;
 }
@@ -36,7 +37,14 @@ html {
   border-bottom: 1px solid grey;
   border-right: 1px solid grey;
 }
-
+.table-header {
+  display: flex;
+}
+.pagination-controls {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
 .search {
   position: relative;
   width: fit-content;

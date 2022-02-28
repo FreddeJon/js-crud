@@ -1,16 +1,52 @@
 const playerTable = document.querySelector("#playerTable");
 const tableHead = document.querySelector("#tableHeader");
 
-const createEl = (el, innerText = "") => {
-  const newEl = document.createElement(el);
-  newEl.innerText = innerText;
-  return newEl;
+const next = document.querySelector("#next");
+const previous = document.querySelector("#previous");
+const page = document.querySelector("#page");
+
+next.addEventListener("click", () => {
+  if (current_page < data.length / takePages) {
+    current_page++;
+    startPage += takePages;
+    page.innerText = current_page;
+    removeRows();
+    pagination(data);
+  }
+});
+
+previous.addEventListener("click", () => {
+  if (current_page > 1) {
+    current_page--;
+    startPage -= takePages;
+    page.innerText = current_page;
+    removeRows();
+    pagination(data);
+  }
+});
+
+let current_page = 1;
+let startPage = 0;
+let takePages = 10;
+let isLoaded = false;
+
+let data = [];
+
+const pagination = (loadedData) => {
+  if (!isLoaded) {
+    data = loadedData;
+    isLoaded = true;
+  }
+  let paginated = data.slice(startPage, current_page * takePages);
+  populate(paginated);
 };
 
 const populate = (arrayOfPlayers) => {
   if (arrayOfPlayers.length < 1 || arrayOfPlayers === undefined) {
     return;
   }
+  removeRows();
+
   if (tableHead.childNodes.length < 1) {
     createHeaders(Object.keys(arrayOfPlayers[0]));
   }
@@ -23,11 +59,14 @@ const removeRows = () => {
   }
 };
 
-const search = (query, data) => {
+const search = (query) => {
   const filtredData = [];
+  console.log(query);
   removeRows();
   if (!query) {
-    populate(data);
+    current_page = 1;
+    startPage = 0;
+    pagination(data);
     return;
   }
   data.forEach((element) => {
@@ -86,6 +125,11 @@ const createEditLink = (id) => {
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
+const createEl = (el, innerText = "") => {
+  const newEl = document.createElement(el);
+  newEl.innerText = innerText;
+  return newEl;
+};
 
 const orderTable = (headerNumber) => {
   let i,
@@ -127,4 +171,4 @@ const orderTable = (headerNumber) => {
   }
 };
 
-export { populate, search };
+export { populate, search, pagination };
