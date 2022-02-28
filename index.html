@@ -4,21 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="app.css" />
     <title>Home</title>
   </head>
   <body>
     <div class="table-container">
+      <a>Next</a>
+      <a>Previous</a>
+
+      <div class="search">
+        <i class="bx bx-search-alt"></i>
+        <input id="search" type="text" placeholder="search" />
+      </div>
+
       <table>
-        <thead id="tableHeader">
-          <tr>
-            <th>Edit</th>
-            <th>Name</th>
-            <th>Jersey</th>
-            <th>Age</th>
-            <th>Born</th>
-          </tr>
-        </thead>
+        <thead id="tableHeader"></thead>
         <tbody id="playerTable"></tbody>
       </table>
       <button id="sort">Add</button>

@@ -1,21 +1,16 @@
 import { ApiHandler } from "./modules/apiHandler.js";
-import { populate, orderTable } from "./modules/populateTable.js";
-import { sortData } from "./modules/sortFunction.js";
+import { populate, search } from "./modules/populateTable.js";
 
-const URL = "https://hockeyplayers.systementor.se/fredde/player";
-// const URL = "http://localhost:3000/players";
+// const URL = "https://hockeyplayers.systementor.se/fredde/player";
+const URL = "http://localhost:3000/players";
 
 const hockeyApi = new ApiHandler(URL);
 
 let data = await hockeyApi.get();
 populate(data);
-console.log(data);
-window.onload = async () => {
-  // data = await hockeyApi.get();
-  populate(data);
-};
-const button = document.querySelector("#sort");
 
-button.addEventListener("click", () => {
-  orderTable(1);
+const searchBtn = document.querySelector("#search");
+
+searchBtn.addEventListener("keyup", (e) => {
+  search(e.target.value, data);
 });

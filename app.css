@@ -19,9 +19,9 @@ html {
   justify-content: center;
 
   margin: 50px auto;
-  width: 500px;
+  width: min-content;
   /* border: 1px solid black; */
-  padding: 20px;
+  padding: 30px;
 }
 
 .table-container table {
@@ -35,4 +35,21 @@ html {
   padding: 20px;
   border-bottom: 1px solid grey;
   border-right: 1px solid grey;
+}
+
+.search {
+  position: relative;
+  width: fit-content;
+  margin-left: auto;
+  margin-bottom: 5px;
+}
+.search i {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.search input {
+  padding: 8px 30px;
+  margin-left: auto;
 }
