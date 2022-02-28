@@ -11,7 +11,7 @@ const populate = (arrayOfPlayers) => {
   if (arrayOfPlayers.length < 1 || arrayOfPlayers === undefined) {
     return;
   }
-  createHeaders(Object.keys(arrayOfPlayers[0]));
+  // createHeaders(Object.keys(arrayOfPlayers[0]));
   createPlayerRow(arrayOfPlayers);
 };
 
@@ -28,11 +28,11 @@ const createHeaders = (keys) => {
 };
 
 const createPlayerRow = (arrayOfPlayers) => {
-  for (const player of arrayOfPlayers) {
+  for (let player of arrayOfPlayers) {
     const playerRow = createEl("tr");
     playerRow.append(createEditLink(player.id));
     const keys = Object.keys(player);
-    for (const key of keys) {
+    for (let key of keys) {
       if (key !== "id") {
         const td = createEl("td", player[key]);
         playerRow.append(td);
@@ -56,5 +56,7 @@ const createEditLink = (id) => {
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
+const orderTable = () => {};
 
 export { populate };

@@ -15,10 +15,12 @@ html {
 
 .table-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+
   margin: 50px auto;
   width: 500px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 20px;
 }
 
