@@ -9,26 +9,33 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="app.css" />
+    <link rel="shortcut icon" href="#" />
     <title>Home</title>
   </head>
   <body>
     <div class="table-container">
       <div class="table-header">
+        <div class="selectPagesContainer">
+          <p>Show</p>
+          <select id="selectPages" selected="10">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+          </select>
+        </div>
         <div class="pagination-controls">
           <a id="previous">Previous</a>
           <p id="page">1</p>
           <a id="next">Next</a>
         </div>
         <div class="search">
-          <i class="bx bx-search-alt"></i>
           <input id="tableSearch" type="text" placeholder="search" />
+          <i class="bx bx-search-alt"></i>
         </div>
       </div>
-
       <table id="table">
         <thead id="tableHeader"></thead>
       </table>
-      <button id="sort">Add</button>
     </div>
     <script type="module" src="/js/app.js"></script>
   </body>

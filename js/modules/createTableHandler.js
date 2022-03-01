@@ -19,13 +19,15 @@ const createPlayerTbody = (playerData) => {
 };
 
 const createEditLink = (id) => {
+  const iconHtml = "<i class='bx bx-edit'></i>";
   const editTd = createEl("td");
-  const edit = createEl("a", "Edit");
+  const edit = createEl("a");
+  edit.innerHTML = iconHtml;
   edit.href = `/${id}`;
   editTd.append(edit);
-  edit.addEventListener("click", () => {
-    window.location.replace(`?id=${id}`);
-  });
+  // edit.addEventListener("click", () => {
+  //   window.location.replace(`?id=${id}`);
+  // });
   return editTd;
 };
 

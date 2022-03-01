@@ -1,9 +1,11 @@
-import { capitalizeFirstLetter, createEl, removeElement } from "./utils.js";
-import { createPlayerTbody, createHeaders } from "./createTableHelper.js";
-const tableSearch = document.querySelector("#tableSearch");
-const tableHead = document.querySelector("#tableHeader");
-const table = document.querySelector("#table");
+import { capitalizeFirstLetter, removeElement } from "./utils.js";
+import { createPlayerTbody, createHeaders } from "./createTableHandler.js";
 
+const tableSearch = document.querySelector("#tableSearch");
+const table = document.querySelector("#table");
+const tableHead = document.querySelector("#tableHeader");
+
+const selectPages = document.querySelector("#selectPages");
 const next = document.querySelector("#next");
 const previous = document.querySelector("#previous");
 const page = document.querySelector("#page");
@@ -12,7 +14,6 @@ next.addEventListener("click", () => {
   if (current_page < data.length / takePages) {
     current_page++;
     startPage += takePages;
-    page.innerText = current_page;
     pagination(data);
   }
 });
@@ -21,7 +22,6 @@ previous.addEventListener("click", () => {
   if (current_page > 1) {
     current_page--;
     startPage -= takePages;
-    page.innerText = current_page;
     pagination(data);
   }
 });
@@ -30,9 +30,16 @@ tableSearch.addEventListener("keyup", (e) => {
   const { value } = e.target;
   search(value);
 });
+
+selectPages.addEventListener("change", (e) => {
+  takePages = Number(e.target.value);
+  startPage = 0;
+  current_page = 1;
+  pagination(data);
+});
 let current_page = 1;
 let startPage = 0;
-let takePages = 5;
+let takePages = 10;
 let isLoaded = false;
 
 let data = [];
@@ -46,6 +53,7 @@ const run = (loadedData) => {
 };
 
 const pagination = (data) => {
+  setCurrentPage();
   let paginatedData = data.slice(startPage, current_page * takePages);
   populateTable(paginatedData);
 };
@@ -73,15 +81,21 @@ const search = (query) => {
     return;
   }
   data.forEach((element) => {
-    const { namn, born } = element;
+    const { namn, born, age, jersey } = element;
     if (
       namn.toLowerCase().includes(query.toLowerCase()) ||
-      born.toLowerCase().includes(query.toLowerCase())
+      born.toLowerCase().includes(query.toLowerCase()) ||
+      (age + "").includes(query) ||
+      (born + "").includes(query)
     ) {
       filtredData.push(element);
     }
   });
   pagination(filtredData);
+};
+
+const setCurrentPage = (length = data.length) => {
+  page.innerText = `${current_page} of ${Math.ceil(length / takePages)}`;
 };
 
 const setHeaderEvent = (el) => {

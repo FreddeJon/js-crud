@@ -17,31 +17,62 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  border: 1px solid gray;
   margin: 50px auto;
   min-width: 400px;
   max-width: 800px;
-  /* border: 1px solid black; */
-  padding: 30px;
+  padding: 10px 30px 20px 30px;
+  border-radius: 4px;
+  box-shadow: 0px 10px 13px -7px #000000, 0px 17px 21px -6px rgba(0, 0, 0, 0);
 }
 
 .table-container table {
   border-left: 1px solid grey;
   border-top: 1px solid grey;
-  /* border-bottom: none; box-shadow: 0px 1px 1px grey; */
 }
 
 .table-container th,
 .table-container td {
-  padding: 20px;
+  padding: 5px 20px;
   border-bottom: 1px solid grey;
   border-right: 1px solid grey;
+  width: 100px;
+  height: 60px;
 }
+.table-container tr:nth-child(2n) {
+  background-color: rgb(216, 216, 216);
+}
+
+.table-container tbody tr:hover {
+  background-color: rgb(226, 226, 226);
+}
+
+.table-container tbody tr a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  font-size: 20px;
+  transition: all ease 0.1s;
+}
+.table-container tbody tr a:hover {
+  transform: scale(1.2);
+}
+.table-container tbody tr td:first-child {
+  text-align: center;
+}
+
+.table-container thead tr th:not(:first-child):hover {
+  background-color: #f18c2e;
+}
+
 .table-header {
   display: flex;
+  padding: 5px 0;
+  user-select: none;
 }
 .pagination-controls {
   display: flex;
+  align-items: center;
   width: 100%;
   justify-content: space-evenly;
 }
@@ -60,4 +91,39 @@ html {
 .search input {
   padding: 8px 30px;
   margin-left: auto;
+}
+
+.search input:hover ~ i {
+  transform: scale(1.05);
+}
+#previous {
+  margin: 0 10px 0 auto;
+  padding: 2px 20px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+#next {
+  margin: 0 auto 0 10px;
+  padding: 2px 20px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+#previous:hover,
+#next:hover {
+  background-color: rgb(226, 226, 226);
+}
+select {
+  background: white;
+  border: none;
+  overflow: hidden;
+  width: 40px;
+}
+
+.selectPagesContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.selectPagesContainer p {
+  margin-right: 15px;
 }
