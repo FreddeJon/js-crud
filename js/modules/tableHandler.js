@@ -1,5 +1,5 @@
-import { removeElement, extractKeys } from "./modules/utils.js";
-import { createPlayerTbody, createHeaders } from "./modules/createTableHandler.js";
+import { removeElement, extractKeys } from "./utils.js";
+import { createPlayerTbody, createHeaders } from "./createTableHandler.js";
 
 const tableSearch = document.querySelector("#tableSearch");
 const table = document.querySelector("#table");

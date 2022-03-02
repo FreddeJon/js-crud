@@ -24,8 +24,10 @@ const loadEditForm = async (id) => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const editObject = getFormValues(form);
-    console.log(editObject);
-    api.update(id, editObject).then(() => window.location.replace("/"));
+    api
+      .update(id, editObject)
+      .then(() => window.location.replace("/"))
+      .catch((err) => console.log(err));
   });
 };
 

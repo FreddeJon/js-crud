@@ -46,6 +46,9 @@ class ApiHandler {
 
   async _fetchMethod(URL, options) {
     const res = await fetch(URL, options);
+    if (res.statusText === "No Content") {
+      return res;
+    }
     const data = await res.json();
     return data;
   }

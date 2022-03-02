@@ -16,8 +16,9 @@ img {
 body {
   position: relative;
   height: 100vh;
-  padding: 100px 0;
+  padding: 20px 0;
   font-family: "Poppins", sans-serif;
+  font-size: 15px;
 }
 
 .table-container {
@@ -52,7 +53,7 @@ body {
   padding-left: 10px;
   border-bottom: var(--border);
   border-right: var(--border);
-  height: 80px;
+  height: 40px;
 }
 .table-container tr:nth-child(2n) {
   background-color: rgb(216, 216, 216);
@@ -158,7 +159,7 @@ select {
   height: 100vh;
   width: 100vw;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,6 +169,7 @@ select {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 30%;
   margin-bottom: 30%;
   height: fit-content;
   background-color: white;

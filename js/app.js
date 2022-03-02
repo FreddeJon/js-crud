@@ -1,14 +1,16 @@
 import { ApiHandler } from "./modules/apiHandler.js";
-import { run } from "./index.js";
+import { run } from "./modules/tableHandler.js";
 import { loadNewForm } from "./modules/formHandler.js";
 
 const newButton = document.querySelector("#new");
 const body = document.querySelector("body");
-// window.URL = "https://hockeyplayers.systementor.se/fredde/player";
 
-window.URL = "http://localhost:3000/players";
+window.URL = "https://hockeyplayers.systementor.se/fredde/player";
+
+// window.URL = "http://localhost:3000/players";
 
 const api = new ApiHandler(window.URL);
+
 const data = await api.get();
 
 run(data);
