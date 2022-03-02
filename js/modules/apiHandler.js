@@ -23,7 +23,6 @@ class ApiHandler {
   }
 
   create(player) {
-    console.log(player);
     const options = {
       method: "POST",
       headers: {
@@ -36,7 +35,7 @@ class ApiHandler {
 
   update(player) {
     const { id } = player;
-    delete player.key;
+    delete player.id;
     const options = {
       method: "PUT",
       headers: {

@@ -1,5 +1,5 @@
 import { ApiHandler } from "./modules/apiHandler.js";
-import { run } from "./modules/index.js";
+import { run } from "./index.js";
 
 // const URL = "https://hockeyplayers.systementor.se/fredde/player";
 const URL = "http://localhost:3000/players";

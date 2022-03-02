@@ -25,9 +25,6 @@ const createEditLink = (id) => {
   edit.innerHTML = iconHtml;
   edit.href = `/${id}`;
   editTd.append(edit);
-  // edit.addEventListener("click", () => {
-  //   window.location.replace(`?id=${id}`);
-  // });
   return editTd;
 };
 

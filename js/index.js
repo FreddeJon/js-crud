@@ -1,10 +1,11 @@
-import { capitalizeFirstLetter, removeElement } from "./utils.js";
-import { createPlayerTbody, createHeaders } from "./createTableHandler.js";
+import { capitalizeFirstLetter, removeElement } from "./modules/utils.js";
+import { createPlayerTbody, createHeaders } from "./modules/createTableHandler.js";
 
 const tableSearch = document.querySelector("#tableSearch");
 const table = document.querySelector("#table");
 const tableHead = document.querySelector("#tableHeader");
 
+const totalItems = document.querySelector("#totalItems");
 const selectPages = document.querySelector("#selectPages");
 const next = document.querySelector("#next");
 const previous = document.querySelector("#previous");
@@ -26,21 +27,24 @@ previous.addEventListener("click", () => {
   }
 });
 
-tableSearch.addEventListener("keyup", (e) => {
-  const { value } = e.target;
+tableSearch.addEventListener("keyup", ({ target: { value } }) => {
   search(value);
 });
 
-selectPages.addEventListener("change", (e) => {
-  takePages = Number(e.target.value);
+selectPages.addEventListener("change", ({ target: { value } }) => {
+  takePages = Number(value);
   startPage = 0;
   current_page = 1;
   pagination(data);
 });
+
 let current_page = 1;
 let startPage = 0;
 let takePages = 10;
 let isLoaded = false;
+
+tableSearch.value = "";
+selectPages.value = takePages;
 
 let data = [];
 
@@ -53,6 +57,7 @@ const run = (loadedData) => {
 };
 
 const pagination = (data) => {
+  totalItems.innerText = `of ${data.length}`;
   setCurrentPage();
   let paginatedData = data.slice(startPage, current_page * takePages);
   populateTable(paginatedData);
@@ -72,7 +77,6 @@ const populateTable = (playerData) => {
 
 const search = (query) => {
   const filtredData = [];
-  console.log(query);
   removeElement("tbody");
   if (!query) {
     current_page = 1;
@@ -99,9 +103,8 @@ const setCurrentPage = (length = data.length) => {
 };
 
 const setHeaderEvent = (el) => {
-  el.addEventListener("click", (e) => {
-    let { key } = e.target.dataset;
-    sortTable(key);
+  el.addEventListener("click", ({ target: { dataset } }) => {
+    sortTable(dataset.key);
     pagination(data);
   });
 };
