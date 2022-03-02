@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+:root {
+  --hover-boxshadow: 0px 10px 13px -7px #000000, 0px 17px 21px -6px rgba(0, 0, 0, 0);
+  --border: 1px solid rgb(163, 163, 163);
+}
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +13,10 @@ img {
   max-width: 100%;
 }
 
-html {
+body {
+  position: relative;
+  height: 100vh;
+  padding: 100px 0;
   font-family: "Poppins", sans-serif;
 }
 
@@ -18,26 +25,34 @@ html {
   flex-direction: column;
   justify-content: center;
   border: 1px solid gray;
-  margin: 50px auto;
-  min-width: 400px;
-  max-width: 800px;
+  margin: 0 auto;
+  width: 800px;
   padding: 10px 30px 20px 30px;
   border-radius: 4px;
-  box-shadow: 0px 10px 13px -7px #000000, 0px 17px 21px -6px rgba(0, 0, 0, 0);
+  box-shadow: var(--hover-boxshadow);
 }
 
 .table-container table {
-  border-left: 1px solid grey;
-  border-top: 1px solid grey;
+  width: 100%;
+  border-left: var(--border);
+  border-top: var(--border);
+}
+.table-container thead tr th {
+  width: calc(55% / 2);
+}
+.table-container thead tr th:nth-child(1),
+.table-container thead tr th:nth-child(3),
+.table-container thead tr th:nth-child(4) {
+  width: 15%;
 }
 
-.table-container th,
-.table-container td {
-  padding: 5px 20px;
-  border-bottom: 1px solid grey;
-  border-right: 1px solid grey;
-  width: 100px;
-  height: 60px;
+.table-container tr th,
+.table-container tr td {
+  /* text-align: center; */
+  padding-left: 10px;
+  border-bottom: var(--border);
+  border-right: var(--border);
+  height: 80px;
 }
 .table-container tr:nth-child(2n) {
   background-color: rgb(216, 216, 216);
@@ -116,6 +131,11 @@ html {
 #totalItems {
   width: 50px;
 }
+
+#new {
+  height: 100%;
+  padding: 8px 20px;
+}
 select {
   background: white;
   border: none;
@@ -125,9 +145,53 @@ select {
 
 .selectPagesContainer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  padding-top: 10px;
 }
 .selectPagesContainer select {
   margin: 0 10px;
+}
+
+.create-form-modal {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid grey;
+}
+.create-form-modal .form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 30%;
+  height: fit-content;
+  background-color: white;
+  padding: 70px;
+  width: 500px;
+  gap: 20px;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-shadow: var(--hover-boxshadow);
+}
+
+.create-form-modal form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.create-form-modal form input {
+  padding: 10px 20px;
+  border: var(--border);
+  border-radius: 5px;
+}
+
+.create-form-modal form button {
+  width: 100px;
+  padding: 5px 20px;
 }

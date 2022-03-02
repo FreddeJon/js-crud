@@ -33,9 +33,7 @@ class ApiHandler {
     return this._fetchMethod(this.URL, options);
   }
 
-  update(player) {
-    const { id } = player;
-    delete player.id;
+  update(id, player) {
     const options = {
       method: "PUT",
       headers: {

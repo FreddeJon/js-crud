@@ -1,4 +1,5 @@
-import { createEl, capitalizeFirstLetter } from "./utils.js";
+import { createEl, capitalizeFirstLetter, extractKeys } from "./utils.js";
+import { loadEditForm } from "./formHandler.js";
 
 const createPlayerTbody = (playerData) => {
   const tbody = createEl("tbody");
@@ -9,7 +10,7 @@ const createPlayerTbody = (playerData) => {
     const playerRow = createEl("tr");
     playerRow.append(createEditLink(player.id));
 
-    Object.keys(player).forEach((key) => {
+    extractKeys(player).forEach((key) => {
       if (key !== "id") playerRow.append(createEl("td", player[key]));
     });
     tbody.append(playerRow);
@@ -23,7 +24,9 @@ const createEditLink = (id) => {
   const editTd = createEl("td");
   const edit = createEl("a");
   edit.innerHTML = iconHtml;
-  edit.href = `/${id}`;
+  edit.addEventListener("click", () => {
+    loadEditForm(id);
+  });
   editTd.append(edit);
   return editTd;
 };

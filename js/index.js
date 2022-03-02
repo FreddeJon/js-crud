@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter, removeElement } from "./modules/utils.js";
+import { removeElement, extractKeys } from "./modules/utils.js";
 import { createPlayerTbody, createHeaders } from "./modules/createTableHandler.js";
 
 const tableSearch = document.querySelector("#tableSearch");
@@ -67,7 +67,7 @@ const populateTable = (playerData) => {
   if (playerData.length < 1 || playerData === undefined) return;
 
   if (tableHead.childNodes.length < 1) {
-    const header = createHeaders(Object.keys(playerData[0]));
+    const header = createHeaders(extractKeys(playerData[0]));
     header.childNodes.forEach((el) => setHeaderEvent(el));
     tableHead.append(header);
   }

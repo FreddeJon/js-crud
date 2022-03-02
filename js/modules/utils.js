@@ -15,4 +15,8 @@ const removeElement = (element) => {
   }
 };
 
-export { capitalizeFirstLetter, createEl, removeElement };
+const extractKeys = (obj) => {
+  return Object.keys(obj);
+};
+
+export { capitalizeFirstLetter, createEl, removeElement, extractKeys };
