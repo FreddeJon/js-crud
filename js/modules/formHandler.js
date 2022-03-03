@@ -1,6 +1,7 @@
 import { ApiHandler } from "./apiHandler.js";
 import { createNewFormModal } from "./createModalHandler.js";
 import { extractKeys } from "./utils.js";
+
 const body = document.querySelector("body");
 
 const loadNewForm = () => {
@@ -14,6 +15,7 @@ const loadNewForm = () => {
     api.create(newObject).then(() => window.location.replace("/"));
   });
 };
+
 const loadEditForm = async (id) => {
   const api = new ApiHandler(window.URL);
   const editObject = await api.getById(id);
@@ -39,11 +41,9 @@ const insertValueInForm = (form, obj) => {
 };
 
 const getFormValues = (form) => {
-  const inputs = [...form.elements].filter((x) => x.localName != "button");
-  const values = inputs.map(({ name, value }) => ({ [name]: value }));
-  const formObject = Object.assign(...values.map((k) => k));
-  console.log(formObject);
-  return formObject;
+  const data = new FormData(form);
+  const value = Object.fromEntries(data.entries());
+  return value;
 };
 
 export { loadEditForm, loadNewForm };
