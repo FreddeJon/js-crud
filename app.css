@@ -204,15 +204,15 @@ select {
   background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
-  align-items: center;
   border: 1px solid grey;
 }
 .form-modal .form-container {
+  position: sticky;
+  top: 50%;
+  margin-top: -300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 30%;
-  margin-bottom: 30%;
   height: fit-content;
   background-color: white;
   padding: 70px;
