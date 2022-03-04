@@ -208,8 +208,7 @@ select {
 }
 .form-modal .form-container {
   position: sticky;
-  top: 50%;
-  margin-top: -300px;
+  top: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -38,7 +38,7 @@ const loadEditForm = (obj) => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const editObject = getFormValues(form);
-    addLoader(modal);
+    addLoader(form);
     api
       .update(id, editObject)
       .then((res) => {
