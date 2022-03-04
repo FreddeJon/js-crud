@@ -39,7 +39,6 @@ selectPages.addEventListener("change", ({ target: { value } }) => {
 let current_page = 1;
 let startPage = 0;
 let takePages = 10;
-let isLoaded = false;
 
 tableSearch.value = "";
 selectPages.value = takePages;
@@ -47,10 +46,8 @@ selectPages.value = takePages;
 let data = [];
 
 const run = (loadedData) => {
-  if (!isLoaded) {
-    data = loadedData;
-    isLoaded = true;
-  }
+  data = loadedData;
+  sortData("namn");
   paginate(data);
 };
 
@@ -89,49 +86,70 @@ const setCurrentPage = (length = data.length) => {
 
 const setHeaderEvent = (el) => {
   el.addEventListener("click", ({ target: { dataset } }) => {
-    sortTable(dataset.key);
+    sortData(dataset.key);
     paginate(data);
   });
 };
 
-const sortTable = (key) => {
-  let i, firstItem, secondItem, needSwitch;
+const sortData = (key) => {
+  let switches = 0;
   let order = "asc";
-  let unsorted = true;
-  let switchcount = 0;
-  while (unsorted) {
-    unsorted = false;
-    for (i = 0; i < data.length - 1; i++) {
-      needSwitch = false;
-      firstItem = data[i][key];
-      secondItem = data[i + 1][key];
-      if (firstItem !== Number || secondItem !== Number) {
-        firstItem = firstItem.toLowerCase();
-        secondItem = secondItem.toLowerCase();
-      }
-      if (order == "asc") {
-        if (firstItem > secondItem) {
-          needSwitch = true;
-          break;
-        }
-      } else if (order == "desc") {
-        if (firstItem < secondItem) {
-          needSwitch = true;
-          break;
-        }
-      }
-    }
-    if (needSwitch) {
-      [data[i], data[i + 1]] = [data[i + 1], data[i]];
-      unsorted = true;
-      switchcount++;
+  let sorting = true;
+  while (sorting) {
+    sorting = false;
+    if (order === "desc") {
+      switches = sortDesc(key);
     } else {
-      if (switchcount == 0 && order == "asc") {
-        order = "desc";
-        unsorted = true;
-      }
+      switches = sortAsc(key);
+    }
+    if (switches == 0 && order == "asc") {
+      order = "desc";
+      sorting = true;
     }
   }
+};
+
+const sortAsc = (key) => {
+  let switches = 0;
+  data.sort((a, b) => {
+    let shouldSwitch = ascendingAlgorithm(a[key], b[key]);
+    if (shouldSwitch > 0) {
+      switches++;
+    }
+    return shouldSwitch;
+  });
+  return switches;
+};
+
+const sortDesc = (key) => {
+  let switches = 0;
+  data.sort((a, b) => {
+    let shouldSwitch = descendingAlgorithm(a[key], b[key]);
+    if (shouldSwitch > 0) {
+      switches++;
+    }
+    return shouldSwitch;
+  });
+  return switches;
+};
+const ascendingAlgorithm = (a, b) => {
+  if (a > b) {
+    return 1;
+  }
+  if (a < b) {
+    return -1;
+  }
+  return 0;
+};
+
+const descendingAlgorithm = (a, b) => {
+  if (a < b) {
+    return 1;
+  }
+  if (a > b) {
+    return -1;
+  }
+  return 0;
 };
 
 export { run, setHeaderEvent };

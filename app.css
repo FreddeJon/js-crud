@@ -130,7 +130,7 @@ body {
 }
 
 #totalItems {
-  width: 50px;
+  width: fit-content;
 }
 
 #new {

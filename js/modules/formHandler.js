@@ -1,6 +1,4 @@
-import { ApiHandler } from "./apiHandler.js";
 import { createFormModal } from "./createModal.js";
-import { extractKeys } from "./utils.js";
 
 const body = document.querySelector("body");
 const create = document.querySelector("#new");
@@ -17,6 +15,7 @@ const runFormHandler = (usingApi, formKeys) => {
 };
 
 const loadNewForm = () => {
+  console.log(keys);
   const modal = createFormModal(keys, "Create New");
   const form = modal.querySelector("form");
   body.append(modal);
