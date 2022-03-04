@@ -19,4 +19,15 @@ const extractKeys = (obj) => {
   return Object.keys(obj);
 };
 
-export { capitalizeFirstLetter, createElement, removeElement, extractKeys };
+const addLoader = (element) => {
+  const div = createElement("div");
+  div.classList.add("loader");
+  element.append(div);
+};
+
+const removeLoader = () => {
+  const loader = document.querySelector(".loader");
+  loader.parentNode.removeChild(loader);
+};
+
+export { capitalizeFirstLetter, createElement, removeElement, extractKeys, addLoader, removeLoader };

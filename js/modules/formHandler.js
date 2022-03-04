@@ -1,4 +1,5 @@
 import { createFormModal } from "./createModal.js";
+import { addLoader, removeLoader } from "./utils.js";
 
 const body = document.querySelector("body");
 const create = document.querySelector("#new");
@@ -15,7 +16,6 @@ const runFormHandler = (usingApi, formKeys) => {
 };
 
 const loadNewForm = () => {
-  console.log(keys);
   const modal = createFormModal(keys, "Create New");
   const form = modal.querySelector("form");
   body.append(modal);
@@ -35,12 +35,16 @@ const loadEditForm = (obj) => {
   const form = modal.querySelector("form");
   body.append(modal);
   insertValueInForm(form, obj);
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const editObject = getFormValues(form);
+    addLoader(modal);
     api
       .update(id, editObject)
-      .then(() => window.location.replace("/"))
+      .then((res) => {
+        removeLoader();
+        window.location.replace("/");
+      })
       .catch((err) => console.log(err));
   });
 };

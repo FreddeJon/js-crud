@@ -1,4 +1,5 @@
 import { initizalizeTable } from "./createTable.js";
+import { removeLoader } from "./utils.js";
 
 const tableSearch = document.querySelector("#tableSearch");
 const table = document.querySelector("#table");
@@ -45,9 +46,10 @@ selectPages.value = takePages;
 
 let data = [];
 
-const run = (loadedData) => {
+const runTableHandler = (loadedData) => {
   data = loadedData;
   sortData("namn");
+  removeLoader();
   paginate(data);
 };
 
@@ -152,4 +154,4 @@ const descendingAlgorithm = (a, b) => {
   return 0;
 };
 
-export { run, setHeaderEvent };
+export { runTableHandler, setHeaderEvent };
