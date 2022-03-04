@@ -1,28 +1,41 @@
 import { ApiHandler } from "./apiHandler.js";
-import { createNewFormModal } from "./createModalHandler.js";
+import { createFormModal } from "./createModal.js";
 import { extractKeys } from "./utils.js";
 
 const body = document.querySelector("body");
+const create = document.querySelector("#new");
+
+create.addEventListener("click", () => {
+  loadNewForm();
+});
+
+let api, keys;
+
+const runFormHandler = (usingApi, formKeys) => {
+  api = usingApi;
+  keys = formKeys;
+};
 
 const loadNewForm = () => {
-  const api = new ApiHandler(window.URL);
-  const formModal = createNewFormModal(extractKeys(window.firstObj), "Create New");
-  const form = formModal.querySelector("form");
-  body.append(formModal);
+  const modal = createFormModal(keys, "Create New");
+  const form = modal.querySelector("form");
+  body.append(modal);
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const newObject = getFormValues(form);
-    api.create(newObject).then(() => window.location.replace("/"));
+    api
+      .create(newObject)
+      .then(() => window.location.replace("/"))
+      .catch((err) => console.log(err));
   });
 };
 
-const loadEditForm = async (id) => {
-  const api = new ApiHandler(window.URL);
-  const editObject = await api.getById(id);
-  const formModal = createNewFormModal(extractKeys(window.firstObj), `Edit ${editObject.namn}`);
-  const form = formModal.querySelector("form");
-  insertValueInForm(form, editObject);
-  body.append(formModal);
+const loadEditForm = (obj) => {
+  const { id, namn } = obj;
+  const modal = createFormModal(keys, `Edit ${namn}`);
+  const form = modal.querySelector("form");
+  body.append(modal);
+  insertValueInForm(form, obj);
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const editObject = getFormValues(form);
@@ -46,4 +59,4 @@ const getFormValues = (form) => {
   return value;
 };
 
-export { loadEditForm, loadNewForm };
+export { runFormHandler, loadEditForm, loadNewForm };

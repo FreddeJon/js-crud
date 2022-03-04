@@ -1,9 +1,7 @@
-import { removeElement, extractKeys } from "./utils.js";
-import { createPlayerTbody, createHeaders } from "./createTableHandler.js";
+import { initizalizeTable } from "./createTable.js";
 
 const tableSearch = document.querySelector("#tableSearch");
 const table = document.querySelector("#table");
-const tableHead = document.querySelector("#tableHeader");
 
 const totalItems = document.querySelector("#totalItems");
 const selectPages = document.querySelector("#selectPages");
@@ -15,7 +13,7 @@ next.addEventListener("click", () => {
   if (current_page < data.length / takePages) {
     current_page++;
     startPage += takePages;
-    pagination(data);
+    paginate(data);
   }
 });
 
@@ -23,7 +21,7 @@ previous.addEventListener("click", () => {
   if (current_page > 1) {
     current_page--;
     startPage -= takePages;
-    pagination(data);
+    paginate(data);
   }
 });
 
@@ -35,7 +33,7 @@ selectPages.addEventListener("change", ({ target: { value } }) => {
   takePages = Number(value);
   startPage = 0;
   current_page = 1;
-  pagination(data);
+  paginate(data);
 });
 
 let current_page = 1;
@@ -53,35 +51,22 @@ const run = (loadedData) => {
     data = loadedData;
     isLoaded = true;
   }
-  pagination(data);
+  paginate(data);
 };
 
-const pagination = (data) => {
-  totalItems.innerText = `of ${data.length}`;
+const paginate = (data) => {
+  totalItems.innerText = ` of ${data.length}`;
   setCurrentPage();
   let paginatedData = data.slice(startPage, current_page * takePages);
-  populateTable(paginatedData);
-};
-
-const populateTable = (playerData) => {
-  if (playerData.length < 1 || playerData === undefined) return;
-
-  if (tableHead.childNodes.length < 1) {
-    const header = createHeaders(extractKeys(playerData[0]));
-    header.childNodes.forEach((el) => setHeaderEvent(el));
-    tableHead.append(header);
-  }
-  removeElement("tbody");
-  table.append(createPlayerTbody(playerData));
+  initizalizeTable(table, paginatedData);
 };
 
 const search = (query) => {
   const filtredData = [];
-  removeElement("tbody");
   if (!query) {
     current_page = 1;
     startPage = 0;
-    pagination(data);
+    paginate(data);
     return;
   }
   data.forEach((element) => {
@@ -90,12 +75,12 @@ const search = (query) => {
       namn.toLowerCase().includes(query.toLowerCase()) ||
       born.toLowerCase().includes(query.toLowerCase()) ||
       (age + "").includes(query) ||
-      (born + "").includes(query)
+      (jersey + "").includes(query)
     ) {
       filtredData.push(element);
     }
   });
-  pagination(filtredData);
+  paginate(filtredData);
 };
 
 const setCurrentPage = (length = data.length) => {
@@ -105,7 +90,7 @@ const setCurrentPage = (length = data.length) => {
 const setHeaderEvent = (el) => {
   el.addEventListener("click", ({ target: { dataset } }) => {
     sortTable(dataset.key);
-    pagination(data);
+    paginate(data);
   });
 };
 
@@ -120,6 +105,10 @@ const sortTable = (key) => {
       needSwitch = false;
       firstItem = data[i][key];
       secondItem = data[i + 1][key];
+      if (firstItem !== Number || secondItem !== Number) {
+        firstItem = firstItem.toLowerCase();
+        secondItem = secondItem.toLowerCase();
+      }
       if (order == "asc") {
         if (firstItem > secondItem) {
           needSwitch = true;
@@ -145,4 +134,4 @@ const sortTable = (key) => {
   }
 };
 
-export { run };
+export { run, setHeaderEvent };

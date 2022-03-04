@@ -2,7 +2,7 @@ const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
 
-const createEl = (el, innerText = "") => {
+const createElement = (el, innerText = "") => {
   const newEl = document.createElement(el);
   newEl.innerText = innerText;
   return newEl;
@@ -19,4 +19,4 @@ const extractKeys = (obj) => {
   return Object.keys(obj);
 };
 
-export { capitalizeFirstLetter, createEl, removeElement, extractKeys };
+export { capitalizeFirstLetter, createElement, removeElement, extractKeys };
