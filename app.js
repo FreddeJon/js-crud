@@ -7,6 +7,7 @@ const body = document.querySelector("body");
 
 // URL = "https://hockeyplayers.systementor.se/stefan/player";
 URL = "http://localhost:3000/players";
+
 const api = new ApiHandler(URL);
 addLoader(document.querySelector(".table-container"));
 const data = await api.get();
@@ -19,15 +20,3 @@ body.addEventListener("click", (e) => {
     modal.parentNode.removeChild(modal);
   }
 });
-
-const getAll = async () => {
-  const options = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  const res = await fetch(URL, options);
-  const data = await res.json();
-};

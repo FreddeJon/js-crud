@@ -1,5 +1,5 @@
 import { initizalizeTable } from "./createTable.js";
-import { addLoader, removeLoader } from "./utils.js";
+import { removeLoader } from "./utils.js";
 
 const tableSearch = document.querySelector("#tableSearch");
 const table = document.querySelector("#table");
