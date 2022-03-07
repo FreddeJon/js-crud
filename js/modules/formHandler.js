@@ -22,9 +22,13 @@ const loadNewForm = () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const newObject = getFormValues(form);
+    addLoader(form);
     api
       .create(newObject)
-      .then(() => window.location.replace("/"))
+      .then(() => {
+        removeLoader();
+        window.location.replace("/");
+      })
       .catch((err) => console.log(err));
   });
 };

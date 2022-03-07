@@ -26,8 +26,10 @@ const addLoader = (element) => {
 };
 
 const removeLoader = () => {
-  const loader = document.querySelector(".loader");
-  loader.parentNode.removeChild(loader);
+  const loader = document.querySelector("div.loader");
+  if (loader) {
+    loader.parentNode.removeChild(loader);
+  }
 };
 
 export { capitalizeFirstLetter, createElement, removeElement, extractKeys, addLoader, removeLoader };

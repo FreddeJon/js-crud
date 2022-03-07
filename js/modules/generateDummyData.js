@@ -11,7 +11,7 @@ casual.define("player", function () {
 
 module.exports = () => {
   const data = { players: [] };
-  for (let i = 0; i < 50000; i++) {
+  for (let i = 0; i < 100; i++) {
     const player = casual.player;
     data.players.push(player);
   }

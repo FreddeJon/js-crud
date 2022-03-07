@@ -4,9 +4,10 @@ import { loadEditForm } from "./formHandler.js";
 import { validation as vl } from "./validation.js";
 
 const initizalizeTable = (table, data) => {
-  if (!vl.validateArray(data)) return;
-
+  // Create headers if not found
   table.tHead.childElementCount <= 0 ? createHeaders(table, extractKeys(data[0])) : "";
+
+  // Empty tbody if there is elements inside
   table.tBodies[0] ? table.tBodies[0].remove() : "";
 
   createTBodyAndInsertData(table, data);

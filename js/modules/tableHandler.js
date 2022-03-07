@@ -1,5 +1,5 @@
 import { initizalizeTable } from "./createTable.js";
-import { removeLoader } from "./utils.js";
+import { addLoader, removeLoader } from "./utils.js";
 
 const tableSearch = document.querySelector("#tableSearch");
 const table = document.querySelector("#table");
@@ -49,11 +49,11 @@ let data = [];
 const runTableHandler = (loadedData) => {
   data = loadedData;
   sortData("namn");
-  removeLoader();
   paginate(data);
 };
 
 const paginate = (data) => {
+  removeLoader();
   totalItems.innerText = ` of ${data.length}`;
   setCurrentPage();
   let paginatedData = data.slice(startPage, current_page * takePages);
@@ -99,11 +99,7 @@ const sortData = (key) => {
   let sorting = true;
   while (sorting) {
     sorting = false;
-    if (order === "desc") {
-      switches = sortDesc(key);
-    } else {
-      switches = sortAsc(key);
-    }
+    switches = order === "asc" ? sortAsc(key) : sortDesc(key);
     if (switches == 0 && order == "asc") {
       order = "desc";
       sorting = true;
