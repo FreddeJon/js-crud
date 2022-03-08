@@ -87,8 +87,8 @@ const setCurrentPage = (length = data.length) => {
 };
 
 const setHeaderEvent = (el) => {
-  el.addEventListener("click", ({ target: { dataset } }) => {
-    sortData(dataset.key);
+  el.addEventListener("click", ({ target: { dataset: {key} } }) => {
+    sortData(key);
     paginate(data);
   });
 };
