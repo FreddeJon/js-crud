@@ -61,24 +61,22 @@ const paginate = (data) => {
 };
 
 const search = (query) => {
-  const filtredData = [];
   if (!query) {
     current_page = 1;
     startPage = 0;
     paginate(data);
     return;
   }
-  data.forEach((element) => {
-    const { namn, born, age, jersey } = element;
+  const filtredData = data.filter(({ namn, born, age, jersey } )=> {
     if (
       namn.toLowerCase().includes(query.toLowerCase()) ||
       born.toLowerCase().includes(query.toLowerCase()) ||
       (age + "").includes(query) ||
       (jersey + "").includes(query)
-    ) {
-      filtredData.push(element);
+    ){
+      return true
     }
-  });
+  })
   paginate(filtredData);
 };
 
