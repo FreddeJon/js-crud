@@ -1,2 +1,11 @@
-<h1>JS CRUD</h1>
-<p>A simple jscrud app</p>
+# JS CRUD
+
+A simple js crud application.
+
+## Installation
+
+Use the package manager npm to install dependencies.
+
+```bash
+npm install
+```
