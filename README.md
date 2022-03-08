@@ -3,9 +3,7 @@
 A simple js crud application.
 
 ## Installation
-If you want to use the dummy data
-Use the package manager npm to install dependencies.
-
+If you want to use the dummy data use the package manager npm to install dependencies.
 ```bash
 npm install
 ```
