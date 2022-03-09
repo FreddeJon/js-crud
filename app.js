@@ -5,8 +5,8 @@ import { extractKeys, addLoader } from "./modules/utils.js";
 
 const body = document.querySelector("body");
 
-// const URL = "https://hockeyplayers.systementor.se/stefan/player";
-const URL = "http://localhost:3000/players";
+const URL = "https://hockeyplayers.systementor.se/fredde/player";
+// const URL = "http://localhost:3000/players";
 
 const api = new ApiHandler(URL);
 addLoader(document.querySelector(".table-container"));
