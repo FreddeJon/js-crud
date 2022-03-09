@@ -121,9 +121,7 @@ const sortAsc = (key) => {
 const sortDesc = (key) => {
   let switches = 0;
   data.sort((a, b) => {
-    
     let shouldSwitch = descendingAlgorithm(a[key], b[key]);
-    
     if (shouldSwitch > 0) {
       switches++;
     }
