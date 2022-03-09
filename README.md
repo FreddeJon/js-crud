@@ -12,4 +12,4 @@ npm install
 json-server ./seed/generateDummyData.js
 ```
 
-Set URL to your api
+Set URL to your api_url in app.js
