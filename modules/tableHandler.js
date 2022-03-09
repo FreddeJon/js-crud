@@ -67,6 +67,7 @@ const search = (query) => {
     paginate(data);
     return;
   }
+
   const filtredData = data.filter(({ namn, born, age, jersey } )=> {
     if (
       namn.toLowerCase().includes(query.toLowerCase()) ||
@@ -120,7 +121,9 @@ const sortAsc = (key) => {
 const sortDesc = (key) => {
   let switches = 0;
   data.sort((a, b) => {
+    
     let shouldSwitch = descendingAlgorithm(a[key], b[key]);
+    
     if (shouldSwitch > 0) {
       switches++;
     }
@@ -129,23 +132,11 @@ const sortDesc = (key) => {
   return switches;
 };
 const ascendingAlgorithm = (a, b) => {
-  if (a > b) {
-    return 1;
-  }
-  if (a < b) {
-    return -1;
-  }
-  return 0;
+  return a > b;
 };
 
 const descendingAlgorithm = (a, b) => {
-  if (a < b) {
-    return 1;
-  }
-  if (a > b) {
-    return -1;
-  }
-  return 0;
+  return a < b;
 };
 
 export { runTableHandler, setHeaderEvent };
